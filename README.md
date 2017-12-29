@@ -1,5 +1,9 @@
 # TUBES
 
+## Setting
+1. Update connection on [application.properties](src/main/resources/application.properties)
+2. Import database
+
 ## Compile
 1. mvn clean
 2. mvn clean install
