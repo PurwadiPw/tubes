@@ -1,0 +1,43 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Sesi'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(sesis)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/sesi' }" class="btn btn-default">Sesi</a>
+			        </div>
+			        <a th:href="${ '/sesi/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>ID Sesi</th>
+	                <th>Nama Sesi</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="sesi : ${sesis}">
+	                <td th:text="${sesi.getIdSesi()}">
+	                	<a href="/sesi/${sesi.getIdSesi()}">ID Sesi</a>
+	                </td>
+	                <td th:text="${sesi.getJamMulai()}">Jam Mulai</td>
+	                <td th:text="${sesi.getJamAkhir()}">Jam Akhir</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/sesi/' + sesi.getIdSesi()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/sesi/edit/' + sesi.getIdSesi()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/sesi/delete/' + sesi.getIdSesi()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

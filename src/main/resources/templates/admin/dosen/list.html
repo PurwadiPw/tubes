@@ -1,0 +1,42 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Dosen'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(dosens)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/dosen' }" class="btn btn-default">Dosen</a>
+			        </div>
+			        <a th:href="${ '/dosen/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>KD Dosen</th>
+	                <th>Nama Dosen</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="dosen : ${dosens}">
+	                <td th:text="${dosen.getKdDosen()}">
+	                	<a href="/dosen/${dosen.getKdDosen()}">KD Dosen</a>
+	                </td>
+	                <td th:text="${dosen.getNmDosen()}">Nama Dosen</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/dosen/' + dosen.getKdDosen()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/dosen/edit/' + dosen.getKdDosen()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/dosen/delete/' + dosen.getKdDosen()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

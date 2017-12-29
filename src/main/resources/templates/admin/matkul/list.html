@@ -1,0 +1,46 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Matkul'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(matkuls)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/matkul' }" class="btn btn-default">Matkul</a>
+			        </div>
+			        <a th:href="${ '/matkul/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>KD Matkul</th>
+	                <th>Nama Matkul</th>
+	                <th>Jenis</th>
+	                <th>SKS</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="matkul : ${matkuls}">
+	                <td th:text="${matkul.getKdMatkul()}">
+	                	<a href="/matkul/${matkul.getKdMatkul()}">KD Matkul</a>
+	                </td>
+	                <td th:text="${matkul.getNmMatkul()}">Nama Matkul</td>
+	                <td th:text="${matkul.getJenis()}">Jenis</td>
+	                <td th:text="${matkul.getSks()}">SKS</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/matkul/' + matkul.getKdMatkul()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/matkul/edit/' + matkul.getKdMatkul()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/matkul/delete/' + matkul.getKdMatkul()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

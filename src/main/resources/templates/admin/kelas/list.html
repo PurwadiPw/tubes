@@ -1,0 +1,42 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Kelas'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(kelass)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/kelas' }" class="btn btn-default">Kelas</a>
+			        </div>
+			        <a th:href="${ '/kelas/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>Nama Kelas</th>
+	                <th>Prodi</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="kelas : ${kelass}">
+	                <td th:text="${kelas.getNmKelas()}">
+	                	<a href="/kelas/${kelas.getNmKelas()}">Nama Kelas</a>
+	                </td>
+	                <td th:text="${kelas.getProdi()}">Prodi</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/kelas/' + kelas.getNmKelas()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/kelas/edit/' + kelas.getNmKelas()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/kelas/delete/' + kelas.getNmKelas()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

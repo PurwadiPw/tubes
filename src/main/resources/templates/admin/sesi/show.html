@@ -1,0 +1,41 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Dosen'">
+
+	<th:block layout:fragment="content">
+            
+        <div class="container-fluid">
+            <div class="row m-bottom-20">
+                <div class="btn-group btn-breadcrumb pull-left">
+                    <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+                    <a th:href="${ '/sesi' }" class="btn btn-default">Dosen</a>
+                    <a th:href="${ '/sesi' }" class="btn btn-default">View Data</a>
+                </div>
+                <a th:href="${ '/sesi' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+            </div>
+        </div>
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">#ID:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${sesi.getIdSesi()}">ID</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Jam Mulai:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${sesi.getJamMulai()}">Jam Mulai</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Jam Akhir:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${sesi.getJamAkhir()}">Jam Akhir</p>
+                </div>
+            </div>
+        </form>
+	</th:block>
+
+</html>

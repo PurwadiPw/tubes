@@ -1,0 +1,42 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Ruang'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(ruangs)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/ruang' }" class="btn btn-default">Ruang</a>
+			        </div>
+			        <a th:href="${ '/ruang/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>KD Ruang</th>
+	                <th>Nama Ruang</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="ruang : ${ruangs}">
+	                <td th:text="${ruang.getKdRuang()}">
+	                	<a href="/ruang/${ruang.getKdRuang()}">KD Ruang</a>
+	                </td>
+	                <td th:text="${ruang.getNmRuang()}">Nama Ruang</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/ruang/' + ruang.getKdRuang()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/ruang/edit/' + ruang.getKdRuang()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/ruang/delete/' + ruang.getKdRuang()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

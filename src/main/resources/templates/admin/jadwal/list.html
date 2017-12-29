@@ -1,0 +1,42 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Jadwal'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(jadwals)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/jadwal' }" class="btn btn-default">Jadwal</a>
+			        </div>
+			        <a th:href="${ '/jadwal/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>ID Jadwal</th>
+	                <th>KD Matkul</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="jadwal : ${jadwals}">
+	                <td th:text="${jadwal.getKdJadwal()}">
+	                	<a href="/jadwal/${jadwal.getKdJadwal()}">KD Jadwal</a>
+	                </td>
+	                <td th:text="${jadwal.getNmJadwal()}">Nama Jadwal</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/jadwal/' + jadwal.getKdJadwal()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/jadwal/edit/' + jadwal.getKdJadwal()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/jadwal/delete/' + jadwal.getKdJadwal()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>

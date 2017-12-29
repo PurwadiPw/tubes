@@ -1,0 +1,42 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout" th:with="title='Hari'">
+
+	<th:block layout:fragment="content">
+		
+	    <div th:if="${not #lists.isEmpty(haris)}">
+			
+			<div class="container-fluid">
+			    <div class="row m-bottom-20">
+			        <div class="btn-group btn-breadcrumb pull-left">
+			            <a th:href="${ '/' }" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+			            <a th:href="${ '/hari' }" class="btn btn-default">Hari</a>
+			        </div>
+			        <a th:href="${ '/hari/new' }" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Add New</a>
+				</div>
+			</div>
+			
+	        <table class="table table-striped">
+	            <tr>
+	                <th>KD Hari</th>
+	                <th>Nama Hari</th>
+	                <th class="text-center">Action</th>
+	            </tr>
+	            <tr th:each="hari : ${haris}">
+	                <td th:text="${hari.getIdHari()}">
+	                	<a href="/hari/${hari.getIdHari()}">KD Hari</a>
+	                </td>
+	                <td th:text="${hari.getNmHari()}">Nama Hari</td>
+	                <td colspan="3" class="text-center">
+	                	<a class="btn btn-xs btn-info" th:href="${ '/hari/' + hari.getIdHari()}">View</a>
+	                	<a class="btn btn-xs btn-warning" th:href="${'/hari/edit/' + hari.getIdHari()}">Edit</a>
+	                	<a class="btn btn-xs btn-danger" th:href="${'/hari/delete/' + hari.getIdHari()}">Delete</a>
+	                </td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	</th:block>
+
+</html>
